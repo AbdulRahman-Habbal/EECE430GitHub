@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="{% url 'video_list' %}" class="btn btn-link">&larr; Back</a>
+<div class="card mb-3">
+  <div class="card-body">
+    <h2>{{ video.MovieTitle }}</h2>
+    <p><strong>Genre:</strong> {{ video.MovieGenre }} | <strong>Year:</strong> {{ video.ReleaseYear }}</p>
+    <p><strong>Actors:</strong> {{ video.Actor1Name }}{% if video.Actor2Name %}, {{ video.Actor2Name }}{% endif %}</p>
+    <p><strong>Director:</strong> {{ video.DirectorName }}</p>
+    <a class="btn btn-primary" href="{% url 'video_update' video.MovieID %}">Edit</a>
+    <a class="btn btn-danger" href="{% url 'video_delete' video.MovieID %}">Delete</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Videos{% endblock %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="h3">Videos</h1>
+  <a class="btn btn-success" href="{% url 'video_create' %}">+ Add Video</a>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 g-3">
+  {% for v in videos %}
+  <div class="col">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">{{ v.MovieTitle }}</h5>
+        <p class="card-text"><strong>{{ v.MovieGenre }}</strong> • {{ v.ReleaseYear }}</p>
+        <p class="mb-0"><small>Director: {{ v.DirectorName }}</small></p>
+        <a href="{% url 'video_detail' v.MovieID %}" class="stretched-link"></a>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+    <p>No videos found. <a href="{% url 'video_create' %}">Add one</a>.</p>
+  {% endfor %}
+</div>
+{% endblock %}
